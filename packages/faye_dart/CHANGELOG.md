@@ -1,3 +1,6 @@
+## [0.1.1+3] - (14-11-2023)
+- Bump Dart version and dependencies
+
 ## [0.1.1+2] - (27-05-2022)
 - nothing new / lints
   

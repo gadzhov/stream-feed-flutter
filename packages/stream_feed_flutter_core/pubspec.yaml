@@ -9,13 +9,13 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  dio: ^4.0.1
-  equatable: ^2.0.3
+  dio: ^5.3.3
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
-  meta: ^1.7.0
-  rxdart: ^0.27.1
-  stream_feed: ^0.6.0+2
+  meta: ^1.9.1
+  rxdart: ^0.27.7
+  stream_feed: ^0.6.0+3
 dev_dependencies:
   flutter_test:
     sdk: flutter

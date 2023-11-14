@@ -14,3 +14,6 @@ doc/api/
 .flutter-plugins-dependencies
 
 /coverage_report
+
+# https://melos.invertase.dev/guides/migrations#200-to-300
+pubspec_overrides.yaml

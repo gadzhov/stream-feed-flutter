@@ -11,3 +11,6 @@ build/
 
 # Directory created by dartdoc
 doc/api/
+
+# https://melos.invertase.dev/guides/migrations#200-to-300
+pubspec_overrides.yaml

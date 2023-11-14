@@ -1,3 +1,6 @@
+## 0.6.0+3: 14/11/2023
+- Bump Dart version and dependencies
+
 ## 0.6.0+2: 27/05/2022
 - bumb version in sdk header
 

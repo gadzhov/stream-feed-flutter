@@ -71,3 +71,6 @@ build/
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+
+# https://melos.invertase.dev/guides/migrations#200-to-300
+pubspec_overrides.yaml
