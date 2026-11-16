@@ -42,8 +42,10 @@ class StreamFeedsNetworkError extends StreamFeedsError {
   factory StreamFeedsNetworkError.fromDioError(DioException error) {
     final response = error.response;
     ErrorResponse? errorResponse;
-    final data = json.decode(response?.data);
-    if (data != null) {
+    // A request that got no answer has no body, and a gateway answers with a
+    // page rather than JSON: either is an error without Stream's details.
+    final data = _decode(response?.data);
+    if (data is Map<String, dynamic>) {
       errorResponse = ErrorResponse.fromJson(data);
     }
     return StreamFeedsNetworkError.raw(
@@ -53,6 +55,15 @@ class StreamFeedsNetworkError extends StreamFeedsError {
       statusCode: errorResponse?.statusCode ?? response?.statusCode,
       data: errorResponse,
     )..stackTrace = error.stackTrace;
+  }
+
+  static Object? _decode(Object? body) {
+    if (body is! String) return body;
+    try {
+      return json.decode(body);
+    } on FormatException {
+      return null;
+    }
   }
 
   /// Error code

@@ -45,6 +45,41 @@ void main() {
       expect(error.data?.statusCode, data.statusCode);
       expect(error.data?.message, data.message);
     });
+
+    test('.fromDioError without a response', () {
+      final options = RequestOptions(path: 'test-path');
+      final dioError = DioException(
+        requestOptions: options,
+        type: DioExceptionType.connectionError,
+        message: 'Connection refused',
+      );
+
+      final error = StreamFeedsNetworkError.fromDioError(dioError);
+
+      expect(error.code, -1);
+      expect(error.message, 'Connection refused');
+      expect(error.statusCode, isNull);
+      expect(error.data, isNull);
+    });
+
+    test('.fromDioError with a response that is not JSON', () {
+      final options = RequestOptions(path: 'test-path');
+      final dioError = DioException(
+        requestOptions: options,
+        response: Response(
+          requestOptions: options,
+          statusCode: 502,
+          statusMessage: 'Bad Gateway',
+          data: '<html>Bad Gateway</html>',
+        ),
+      );
+
+      final error = StreamFeedsNetworkError.fromDioError(dioError);
+
+      expect(error.message, 'Bad Gateway');
+      expect(error.statusCode, 502);
+      expect(error.data, isNull);
+    });
   });
 
   test('should match if message, code and statusCode is same', () {
