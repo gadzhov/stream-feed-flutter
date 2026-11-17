@@ -15,7 +15,7 @@ dependencies:
   faye_dart:
     git:
       url: https://github.com/gadzhov/stream-feed-flutter.git
-      ref: master
+      ref: 1.0.2
       path: packages/faye_dart
   http_parser: ^4.0.2
   intl: ^0.18.0
