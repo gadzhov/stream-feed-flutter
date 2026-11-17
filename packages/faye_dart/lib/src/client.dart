@@ -277,7 +277,13 @@ class FayeClient with Extensible, TimeoutHelper, EquatableMixin {
 
   void _subscribeChannels(Iterable<String> channels, {bool force = false}) {
     for (final channel in channels) {
-      subscribe(channel, force: force);
+      // Nobody waits for these. A refusal comes with advice to handshake
+      // again, which subscribes once more.
+      subscribe(channel, force: force).then<void>(
+        (_) {},
+        onError: (Object error) =>
+            _logger.warning('Subscribing again to $channel failed', error),
+      );
     }
   }
 
